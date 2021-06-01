@@ -37,6 +37,10 @@ public class Client {
             if (isValidInput(userInput).equals("true") && !userInput.equals("check-status") && !userInput.equals("quit")) {
                 int col = Integer.parseInt(userInput);
                 if (isValidMove(col).equals("true")) {
+                    if (Integer.parseInt(checkNumberOfPlayers()) < 2) {
+                        System.out.println(checkStatus());
+                        System.exit(0);
+                    }
                     System.out.println(makeMove(name, col));
                     if (checkWin().equals("true") || isBoardFull().equals("true")) {
                         System.exit(0);
