@@ -44,7 +44,7 @@ Using a client-server architecture, implement a plain text version of the game u
 
 ### Client
 
-the client application is a Java class named Client. The client prompts the player for input requests the game logic from the server usnig Java's HTTP Client.
+the client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server usnig Java's HTTP Client.
 
 - At anytime you can check the status of the game by entering "check-status" in the console. This command will check and return the current game status and game state. (will be useful after a player makes a move).
 - At any time a client can leave the game by entering "quit" in the console. This will remove the player from the game and the game will end.
@@ -55,10 +55,6 @@ Unfortunately, due to other responsibilities and time constraints, I did not get
 I carried out manual testing throughout the development process but further testig is definitely needed to test all possible inputs and outputs.
 In the future, I would consider writing automated unit and integration tests with the TestNG framework.
 
-## Considerations
-
-I thought this was a really interesting project to work on and I definitely learned a lot throughout the development process as I encountered some scenarios/issues that I have never seen before.
-
 ## Improvements
 
 As this application communicates over HTTP and HTTP is uni-directional, the client must request the data from the server and the server will then respond to the client.
@@ -67,3 +63,7 @@ To improve this client/server interaction I would consider:
 
 - Long polling the requests and only responding to the client when the data is made availabe on the server.
 - Implementing web socket communication as web sockets allow for bi-directional communciatin.
+
+## Considerations
+
+I thought this was a really interesting project to work on and I definitely learned a lot throughout the development process as I encountered some scenarios/issues that I have never seen before.
