@@ -47,7 +47,7 @@ Using a client-server architecture, implement a plain text version of the game u
 the client application is a Java class named Client. The client prompts the player for input requests the game logic from the server usnig Java's HTTP Client.
 
 - At anytime you can check the status of the game by entering "check-status" in the console. This command will check and return the current game status and game state. (will be useful after aplayer makes amove).
-- At any time a client can leave the game by entering "quit" int he console. This will remove the player from the game and the game will end.
+- At any time a client can leave the game by entering "quit" in the console. This will remove the player from the game and the game will end.
 
 # Testing
 
