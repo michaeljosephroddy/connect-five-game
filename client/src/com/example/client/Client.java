@@ -30,6 +30,9 @@ public class Client {
                 if (Integer.parseInt(checkNumberOfPlayers()) < 2) {
                     System.exit(0);
                 }
+                if (checkWin().equals("true")) {
+                    System.exit(0);
+                }
             }
             if (isValidInput(userInput).equals("true") && !userInput.equals("check-status") && !userInput.equals("quit")) {
                 int col = Integer.parseInt(userInput);
