@@ -52,7 +52,7 @@ the client application is a Java class named Client. The client prompts the play
 ## Testing
 
 Unfortunately, due to other responsibilities and time constraints, I did not get a chance to write any unit or integration tests.
-I carried out manual testing throughout the development process and I am confident the application works as the requirements states but further testig is definitely needed to test all possible inputs and outputs.
+I carried out manual testing throughout the development process but further testig is definitely needed to test all possible inputs and outputs.
 In the future, I would consider writing automated unit and integration tests with the TestNG framework.
 
 ## Considerations
