@@ -7,7 +7,7 @@ The pieces fall straight down, occupying the lowest available space within the c
 
 Using a client-server architecture, implement a plain text version of the game using any language.
 
-- The server application holds the state and businees logic of the game, receiving the movements from the players and deciding whether a player has won, or the game is over. The state of the game, and who's turn it is , will be returned to the client upon request. The communication between the clients and server should be over HTTP.
+- The server application holds the state and business logic of the game, receiving the movements from the players and deciding whether a player has won, or the game is over. The state of the game, and who's turn it is , will be returned to the client upon request. The communication between the clients and server should be over HTTP.
 - The server upon start waits for the clients to connect, if one of the clienst disconnects, the game is over.
 - The client prompts the player to enter her name upon start, and displays whether it is waitnig for a second player, or the game can start.
 - On each turn, the client displays the state of the board and prompts the corresponding player for input or displays that is it waiting for the other players input.
@@ -44,7 +44,7 @@ Using a client-server architecture, implement a plain text version of the game u
 
 ### Client
 
-The client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server usnig Java's HTTP Client.
+The client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server using Java's HTTP Client.
 
 - At anytime you can check the status of the game by entering "check-status" in the console. This command will check and return the current game status and game state. (will be useful after a player makes a move).
 - At any time a client can leave the game by entering "quit" in the console. This will remove the player from the game and the game will end.
