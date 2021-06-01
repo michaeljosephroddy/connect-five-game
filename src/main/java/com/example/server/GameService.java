@@ -46,7 +46,7 @@ public class GameService {
             game.setStatus("PLAYER 2 HAS LEFT THE GAME");
             game.setPlayer1(null);
         }
-        return game.getStatus();
+        return game.toString();
     }
 
     /**

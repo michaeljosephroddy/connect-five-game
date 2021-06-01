@@ -109,10 +109,10 @@ public class Game {
             currentState += "\r\n" + getStatus() + ": " + "\n" + "please enter col (1-9) or check-status";
         }
         if (getStatus().equals("PLAYER 1 HAS LEFT THE GAME")) {
-            return getStatus() + ": " + player1.getName();
+            return getStatus();
         }
         if (getStatus().equals("PLAYER 2 HAS LEFT THE GAME")) {
-            return getStatus() + ": " + player2.getName();
+            return getStatus();
         }
         if (getStatus().equals("BOARD IS FULL")) {
             currentState += "\r\n" + getStatus();

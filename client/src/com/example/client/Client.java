@@ -37,7 +37,7 @@ public class Client {
             if (isValidInput(userInput).equals("true") && !userInput.equals("check-status") && !userInput.equals("quit")) {
                 int col = Integer.parseInt(userInput);
                 if (isValidMove(col).equals("true")) {
-                    if (Integer.parseInt(checkNumberOfPlayers()) < 2) {
+                    if (checkStatus().equals("PLAYER 1 HAS LEFT THE GAME") || checkStatus().equals("PLAYER 2 HAS LEFT THE GAME")) {
                         System.out.println(checkStatus());
                         System.exit(0);
                     }
