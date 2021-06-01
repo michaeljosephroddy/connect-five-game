@@ -20,7 +20,7 @@ Using a client-server architecture, implement a plain text version of the game u
 
 - Run the Spring Boot Application class to boot up the server.
 - Run the Client Java class to boot up the client.
-- You can run up to two clinet applications at a time.
+- You can run up to two client applications at a time.
 
 ### Languages/tools
 
