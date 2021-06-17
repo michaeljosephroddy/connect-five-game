@@ -2,16 +2,36 @@ package com.example.server;
 
 public class Game {
 
+    private static final int HEIGHT = 6;
+    private static final int WIDTH = 19;
     private Player player1;
     private Player player2;
     private Player playerTurn;
-    private int numberOfPlayers = 0;
+    private Player nextPlayer;
+    private int numberOfPlayers;
     private Player winner;
     private String status;
     private char[][] board;
+    private boolean playerHasLeft;
+    private boolean tooManyPlayers;
+    private boolean isBoardFull;
 
     public Game() {
+        player1 = new Player();
+        player2 = new Player();
+        playerTurn = new Player();
+        nextPlayer = new Player();
+        numberOfPlayers = 0;
+        winner = new Player();
+        status = "";
+        board = createBoard(HEIGHT, WIDTH);
+        playerHasLeft = false;
+        tooManyPlayers = false;
+        isBoardFull = false;
+    }
 
+    public Game(String message) {
+        this.status = message;
     }
 
     public Player getPlayer1() {
@@ -70,6 +90,30 @@ public class Game {
         this.numberOfPlayers = numberOfPlayers;
     }
 
+    public boolean getPlayerHasLeft() {
+        return playerHasLeft;
+    }
+
+    public void setPlayerHasLeft(boolean playerHasLeft) {
+        this.playerHasLeft = playerHasLeft;
+    }
+
+    public boolean getTooManyPlayers() {
+        return tooManyPlayers;
+    }
+
+    public void setTooManyPlayers(boolean tooManyPlayers) {
+        this.tooManyPlayers = tooManyPlayers;
+    }
+
+    public boolean getIsBoardFull() {
+        return isBoardFull;
+    }
+
+    public void setIsBoardFull(boolean boardFull) {
+        isBoardFull = boardFull;
+    }
+
     public Player getNextPlayer() {
         if (playerTurn == player1) {
             return player2;
@@ -78,50 +122,64 @@ public class Game {
         }
     }
 
-    public boolean isMyTurn() {
-        return playerTurn.getName().equals(player1.getName());
-    }
-
-    public String toString() {
-        char[][] board = this.getBoard();
-        String currentState = "";
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                currentState += board[i][j];
-                if (j == board[0].length-1) {
-                    currentState += "\r\n";
+    /**
+     * creates the game board.
+     * @return a 2d char array as the game board.
+     */
+    public char[][] createBoard(int HEIGHT, int WIDTH) {
+        char[][] board = new char[HEIGHT][WIDTH];
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (col % 2 == 0) {
+                    board[row][col] = '|';
+                } else {
+                    board[row][col] = '_';
                 }
             }
         }
-        if (getStatus().equals("WAITING FOR PLAYER 2 TO JOIN")) {
-            currentState += "\r\n" + getStatus();
-        }
-        if (getStatus().equals("WAITING FOR PLAYER 1 TO MOVE")) {
-            currentState += "\r\n" + getStatus() + ": " + getPlayer1().getName();
-        }
-        if (getStatus().equals("WAITING FOR PLAYER 2 TO MOVE")) {
-            currentState += "\r\n" + getStatus() + ": " + getPlayer2().getName();
-        }
-        if (getStatus().equals("INVALID MOVE")) {
-            currentState += "\r\n" + getStatus() + ": " + "\n" + "please enter col (1-9) or check-status";
-        }
-        if (getStatus().equals("INVALID INPUT")) {
-            currentState += "\r\n" + getStatus() + ": " + "\n" + "please enter col (1-9) or check-status";
-        }
-        if (getStatus().equals("PLAYER 1 HAS LEFT THE GAME")) {
-            return getStatus();
-        }
-        if (getStatus().equals("PLAYER 2 HAS LEFT THE GAME")) {
-            return getStatus();
-        }
-        if (getStatus().equals("BOARD IS FULL")) {
-            currentState += "\r\n" + getStatus();
-        }
-        if (getStatus().equals("WINNER")) {
-            currentState += "\r\n" + getStatus() + ": " + getWinner().getName();
-        }
-        return currentState;
+        return board;
     }
+
+//    public String toString() {
+//        char[][] board = this.getBoard();
+//        String currentState = "";
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board[0].length; j++) {
+//                currentState += board[i][j];
+//                if (j == board[0].length-1) {
+//                    currentState += "\r\n";
+//                }
+//            }
+//        }
+//        if (getStatus().equals("WAITING FOR PLAYER 2 TO JOIN")) {
+//            currentState += "\r\n" + getStatus();
+//        }
+//        if (getStatus().equals("WAITING FOR PLAYER 1 TO MOVE")) {
+//            currentState += "\r\n" + getStatus() + ": " + getPlayer1().getName();
+//        }
+//        if (getStatus().equals("WAITING FOR PLAYER 2 TO MOVE")) {
+//            currentState += "\r\n" + getStatus() + ": " + getPlayer2().getName();
+//        }
+//        if (getStatus().equals("INVALID MOVE")) {
+//            currentState += "\r\n" + getStatus() + ": " + "\n" + "please enter col (1-9) or check-status";
+//        }
+//        if (getStatus().equals("INVALID INPUT")) {
+//            currentState += "\r\n" + getStatus() + ": " + "\n" + "please enter col (1-9) or check-status";
+//        }
+//        if (getStatus().equals("PLAYER 1 HAS LEFT THE GAME")) {
+//            return getStatus();
+//        }
+//        if (getStatus().equals("PLAYER 2 HAS LEFT THE GAME")) {
+//            return getStatus();
+//        }
+//        if (getStatus().equals("BOARD IS FULL")) {
+//            currentState += "\r\n" + getStatus();
+//        }
+//        if (getStatus().equals("WINNER")) {
+//            currentState += "\r\n" + getStatus() + ": " + getWinner().getName();
+//        }
+//        return currentState;
+//    }
 
 }
 
