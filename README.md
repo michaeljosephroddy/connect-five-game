@@ -1,13 +1,13 @@
 ## 5-in-a-row
 
 Connect Five (also known as 5 in a row) is a two-player connection board game, in which the players take turns dropping colored discs into a nine-column, six-row vertically suspended grid. 
-The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.
+The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of five of one's own discs.
 
 ## The Task
 
 Using a client-server architecture, implement a plain text version of the game using any language.
 
-- The server application holds the state and businees logic of the game, receiving the movements from the players and deciding whether a player has won, or the game is over. The state of the game, and who's turn it is , will be returned to the client upon request. The communication between the clients and server should be over HTTP.
+- The server application holds the state and business logic of the game, receiving the movements from the players and deciding whether a player has won, or the game is over. The state of the game, and who's turn it is , will be returned to the client upon request. The communication between the clients and server should be over HTTP.
 - The server upon start waits for the clients to connect, if one of the clienst disconnects, the game is over.
 - The client prompts the player to enter her name upon start, and displays whether it is waitnig for a second player, or the game can start.
 - On each turn, the client displays the state of the board and prompts the corresponding player for input or displays that is it waiting for the other players input.
@@ -20,7 +20,7 @@ Using a client-server architecture, implement a plain text version of the game u
 
 - Run the Spring Boot Application class to boot up the server.
 - Run the Client Java class to boot up the client.
-- You can run up to two clinet applications at a time.
+- You can run up to two client applications at a time.
 
 ### Languages/tools
 
@@ -44,16 +44,14 @@ Using a client-server architecture, implement a plain text version of the game u
 
 ### Client
 
-the client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server usnig Java's HTTP Client.
+The client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server using Java's HTTP Client.
 
 - At anytime you can check the status of the game by entering "check-status" in the console. This command will check and return the current game status and game state. (will be useful after a player makes a move).
 - At any time a client can leave the game by entering "quit" in the console. This will remove the player from the game and the game will end.
 
 ## Testing
 
-Unfortunately, due to other responsibilities and time constraints, I did not get a chance to write any unit or integration tests.
-I carried out manual testing throughout the development process but further testig is definitely needed to test all possible inputs and outputs.
-In the future, I would consider writing automated unit and integration tests with the TestNG framework.
+I ran unit tests with the TestNG Framework for the main functions of the game to ensure that they were working correctly.
 
 ## Improvements
 
