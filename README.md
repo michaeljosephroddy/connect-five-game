@@ -1,67 +1,85 @@
-## 5-in-a-row
+# 5-in-a-Row Documentation
 
-Connect Five (also known as 5 in a row) is a two-player connection board game, in which the players take turns dropping colored discs into a nine-column, six-row vertically suspended grid. 
-The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of five of one's own discs.
+## Overview
+Connect Five (also known as 5-in-a-row) is a two-player connection board game. Players alternate turns dropping colored discs into a grid consisting of nine columns and six rows. The pieces fall to the lowest available space in the column. The objective is to be the first to form a horizontal, vertical, or diagonal line of five consecutive discs.
+
+---
 
 ## The Task
+Using a client-server architecture, implement a plain-text version of the game in any programming language.
 
-Using a client-server architecture, implement a plain text version of the game using any language.
+### Requirements:
+1. **Server Application:**
+   - Manages the game state and business logic.
+   - Receives player moves and determines if a player has won or if the game is over.
+   - Returns the game state and turn information to the client upon request.
+   - Waits for clients to connect upon startup. If a client disconnects, the game ends.
 
-- The server application holds the state and business logic of the game, receiving the movements from the players and deciding whether a player has won, or the game is over. The state of the game, and who's turn it is , will be returned to the client upon request. The communication between the clients and server should be over HTTP.
-- The server upon start waits for the clients to connect, if one of the clienst disconnects, the game is over.
-- The client prompts the player to enter her name upon start, and displays whether it is waitnig for a second player, or the game can start.
-- On each turn, the client displays the state of the board and prompts the corresponding player for input or displays that is it waiting for the other players input.
-- The client receives the input from the standard input (stdin).
-- The client displays when the game is over and the name of the winner.
+2. **Client Application:**
+   - Prompts the player for their name upon startup.
+   - Indicates whether it is waiting for a second player or ready to start.
+   - Displays the board state on each turn and prompts the player for input or informs them it is waiting for the opponent’s move.
+   - Receives input from the standard input (stdin).
+   - Displays the game result and the winner's name when the game ends.
+
+---
 
 ## My Implementation
 
-### To Run This Application
+### To Run the Application
+1. Run the Spring Boot Application class to start the server.
+2. Run the Client Java class to start the client.
+3. Up to two client applications can connect simultaneously.
 
-- Run the Spring Boot Application class to boot up the server.
-- Run the Client Java class to boot up the client.
-- You can run up to two client applications at a time.
+### Technologies Used
+- **Java**
+- **Spring Boot 2.0**
 
-### Languages/tools
+The client interacts with the backend Spring Boot server via a REST API over HTTP. The server handles all game logic, while the client processes and displays server responses.
 
- - Java
- - Spring Boot 2.0
- 
- The Java client interacts with the backend Spring Boot server through a REST API that communicates over HTTP protocol.
- All of the game logic is handled on the backend server and the client merely requests the game logic from the server and processes/displays the response. 
- 
- ## Code Structure
- 
- ### Server
- 
- The server application is made up of 5 classes:
- 
-- Application --> the entry point for the Spring Boot app.
-- Game --> models the game. e.g a game can have players, a winner, a game status, a players turn and a number of players.
-- GameController --> holds the routes or endpoints and intercepts incoming requests.
-- GameService --> holds the game logic.
-- Player --> models the player of the game. e.g a player can have a name and piece.
+---
+
+## Code Structure
+
+### Server
+The server application consists of the following classes:
+
+1. **`Application`**
+   - Entry point for the Spring Boot application.
+2. **`Game`**
+   - Models the game, including players, game status, turn management, and winner determination.
+3. **`GameController`**
+   - Manages API routes and handles incoming requests.
+4. **`GameService`**
+   - Contains the core game logic.
+5. **`Player`**
+   - Models a player, including their name and assigned piece.
 
 ### Client
+The client is implemented as a Java class named `Client`. It handles user input, sends requests to the server, and displays the server's responses.
 
-The client application is a Java class named Client. The client prompts the player for input and requests the game logic from the server using Java's HTTP Client.
+#### Features:
+- **Check Game Status:**
+  - Enter `check-status` in the console to view the current game state and status after a move.
+- **Quit Game:**
+  - Enter `quit` in the console to leave the game. The server will end the game.
 
-- At anytime you can check the status of the game by entering "check-status" in the console. This command will check and return the current game status and game state. (will be useful after a player makes a move).
-- At any time a client can leave the game by entering "quit" in the console. This will remove the player from the game and the game will end.
+---
 
 ## Testing
+- Unit tests were written using the **TestNG Framework** to verify the functionality of the game’s main features.
 
-I ran unit tests with the TestNG Framework for the main functions of the game to ensure that they were working correctly.
+---
 
-## Improvements
+## Potential Improvements
+Currently, the application communicates over HTTP, which is unidirectional. This means the client must actively request updates from the server. To enhance client-server interaction:
 
-As this application communicates over HTTP and HTTP is uni-directional, the client must request the data from the server and the server will then respond to the client.
-This can be quite inconveinient as the client needs to "check the game status" after a player joins, makes a move or leaves the game etc..
-To improve this client/server interaction I would consider:
+1. **Long Polling:**
+   - The server responds only when new data is available, reducing unnecessary requests.
+2. **WebSocket Communication:**
+   - WebSockets enable bi-directional communication, allowing the server to push updates to the client in real time.
 
-- Long polling the requests and only responding to the client when the data is made availabe on the server.
-- Implementing web socket communication as web sockets allow for bi-directional communciatin.
+---
 
-## Considerations
-
-I thought this was a really interesting project to work on and I definitely learned a lot throughout the development process as I encountered some scenarios/issues that I have never seen before.
+## Reflections
+Working on this project was a valuable learning experience. It introduced me to new challenges and scenarios, deepening my understanding of client-server architecture and HTTP communication.
